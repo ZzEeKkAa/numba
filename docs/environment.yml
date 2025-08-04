@@ -6,8 +6,8 @@ channels:
   - numba/label/dev
 dependencies:
   - python=3.10
-  - llvmlite=0.45
-  - numpy
+  - llvmlite=0.44
+  - numpy<=2.2
   - numpydoc
   - setuptools
   # https://stackoverflow.com/questions/67542699/readthedocs-sphinx-not-rendering-bullet-list-from-rst-fileA
