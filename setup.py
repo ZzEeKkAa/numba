@@ -20,12 +20,11 @@ except ImportError:
 
 
 min_python_version = "3.10"
-max_python_version = "3.14"  # exclusive
-min_numpy_build_version = "2.0.0rc1"
-min_numpy_run_version = "1.24"
-max_numpy_run_version = "2.3"
-min_llvmlite_version = "0.44.0dev0"
-max_llvmlite_version = "0.45"
+max_python_version = "3.15"  # exclusive
+min_numpy_build_version = "1.11"
+min_numpy_run_version = "1.22"
+min_llvmlite_version = "0.46.0dev0"
+max_llvmlite_version = "0.47"
 
 if sys.platform.startswith('linux'):
     # Patch for #2555 to make wheels without libpython
@@ -214,6 +213,7 @@ def get_ext_modules():
         """
         found = None
         path2check = [os.path.split(os.path.split(sys.executable)[0])[0]]
+        path2check += [os.path.dirname(sys.executable)]    # for GHA win toolcache: ...\Python\<ver>\x64
         path2check += [os.getenv(n, '') for n in ['CONDA_PREFIX', 'PREFIX']]
         if sys.platform.startswith('win'):
             path2check += [os.path.join(p, 'Library') for p in path2check]
@@ -388,6 +388,7 @@ metadata = dict(
         "Programming Language :: Python :: 3.11",
         "Programming Language :: Python :: 3.12",
         "Programming Language :: Python :: 3.13",
+        "Programming Language :: Python :: 3.14",
         "Topic :: Software Development :: Compilers",
     ],
     package_data={
